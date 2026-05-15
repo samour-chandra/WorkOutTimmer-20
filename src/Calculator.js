@@ -11,11 +11,11 @@ function Calculator({ workouts, allowSound }) {
   const mins = Math.floor(duration);
   const seconds = (duration - mins) * 60;
 
-  // const playSound = function () {
-  //   if (!allowSound) return;
-  //   const sound = new Audio(clickSound);
-  //   sound.play();
-  // };
+  const playSound = function () {
+    if (!allowSound) return;
+    const sound = new Audio(clickSound);
+    sound.play();
+  };
   useEffect(
     function () {
       setDuration((number * sets * speed) / 60 + (sets - 1) * durationBreak);
@@ -25,9 +25,11 @@ function Calculator({ workouts, allowSound }) {
 
   function handleInc() {
     setDuration((cur) => Math.floor(cur) + 1);
+    playSound();
   }
   function handleDec() {
     setDuration((cur) => (duration > 0 ? cur - 1 : 0));
+    playSound();
   }
 
   return (
